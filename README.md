@@ -1,4 +1,4 @@
-# GridResizer
+# xGridResizer
 
 This extension lets you resize the grid of a sheet in Qlik Sense. 
 
