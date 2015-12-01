@@ -1,0 +1,26 @@
+/* CSS */
+/* Button design */
+.btn  {
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    background: #92D400;
+	text-decoration: none;
+	font-family: Raleway, Arial, sans-serif;
+	font-size: 20px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 20px;
+	display:inline-block;
+	margin: 2px;
+}
+
+.btn-primary  {
+    background: #79bbff;
+}
+
+.btn-default  {
+    background: #c94e50;;
+}
+
