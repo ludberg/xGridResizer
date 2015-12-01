@@ -16,7 +16,8 @@ This extension lets you resize the grid of a sheet in Qlik Sense.
 2. Import the .zip file via the QMC, under Extensions
 3. You will now have a new extension in Qlik Sense called xGridResizer. Drag this to the sheet you want to resize.
 4. You might have to save the app and reload before you can resize!
-5. Drag the slider to change the number of columns.
+5. Change the properties "Number of rows" and "Number of Columns"
+6. Press the button "Resize"
  
 You can not resize the grid in a published application 
 
@@ -28,4 +29,3 @@ You can not resize the grid in a published application
 4. If you're using Qlik Sense Desktop you might have to save the app and reload it before you can resize the grid
 5. Change the properties "Number of rows" and "Number of Columns"
 6. Press the button "Resize"
-
