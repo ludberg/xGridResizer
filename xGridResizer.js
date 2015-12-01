@@ -27,13 +27,36 @@ define(["qlik"], function(qlik) {
 			app.doSave();
 		});
   	} // end resizeGrid()
+  
+  	
  
 	return {
 		initialProperties : {
 			version : 1.0,
 			alternatives : []
-		}
-	  	,
+		},
+	  	definition: {
+			type: "items",
+			component: "accordion",
+			items: {
+				settings: {
+					uses: "settings"
+				},
+			  	about: {
+  					type: "items",
+  					label: "About",
+    				items: {
+      					btninactive: {
+      						type: "string",
+      						label: "anders.uddenberg@exsitec.se",
+      						ref: "about",
+      						defaultValue: "https://github.com/ludberg/xgridresizer"
+      					}
+    				}
+				}
+			}
+		},
+	  
 		paint : function($element, layout) {
 			var html = "", ext = this;
 				  
