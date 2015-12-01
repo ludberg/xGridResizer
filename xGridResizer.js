@@ -1,25 +1,25 @@
 /**
- * Author: Anders Uddenberg <anders.uddenberg@exsitec.se>
+ * Author: Anders Uddenberg <anders.uddenberg@exsitec.se>, Peter Bergman <peter.bergman@exsitec.se>
  * Date: 2015-11-26
  * Todo: Error checking and handling
  */
-define(["qlik"], function(qlik) {
+define(["qlik", "./properties" ,"text!./btn.css"], function(qlik, props, cssContent) {
 	var app = qlik.currApp(this);
   	var sheetId = qlik.navigation.getCurrentSheetId().sheetId;
-  	
+  	$( '<style>' ).html( cssContent ).appendTo( 'head' );
   
-  	function resizeGrid(gridx) {
+  	function resizeGrid(rows, cols) {
 		
 	  	app.getObject(sheetId).then(function(obj) {
 		  	obj.applyPatches([{
 					qOp: 'replace',
 				  	qPath: '/columns',
-					qValue: '"'+gridx+'"'
+					qValue: '"'+cols+'"'
 				},
 				{
 					qPath : '/rows',
 					qOp : 'replace',
-					qValue : '"'+Math.ceil(gridx/2)+'"' 
+					qValue : '"'+rows+'"' 
 				}		 
 				],false);  
 			
@@ -27,64 +27,31 @@ define(["qlik"], function(qlik) {
 			app.doSave();
 		});
   	} // end resizeGrid()
-  
-  	
  
 	return {
 		initialProperties : {
 			version : 1.0,
 			alternatives : []
 		},
-	  	definition: {
-			type: "items",
-			component: "accordion",
-			items: {
-				settings: {
-					uses: "settings"
-				},
-			  	about: {
-  					type: "items",
-  					label: "About",
-    				items: {
-      					btninactive: {
-      						type: "string",
-      						label: "anders.uddenberg@exsitec.se",
-      						ref: "about",
-      						defaultValue: "https://github.com/ludberg/xgridresizer"
-      					}
-    				}
-				}
-			}
-		},
-	  
+	  	
+	  definition: ( props )
+	  	,
 		paint : function($element, layout) {
 			var html = "", ext = this;
-				  
-		  	html += '<strong>Choose # of columns</strong><br>Min:12, Max: 64<br/><br><span><input id="selector" type="range" step="2" min="12" max="64" style="width:98%" style="display:inline-block !important; vertical-align:middle" value="test-value"/><br>Current # of columns: <span id="size"></span><br>Change to: <span id="newsize">slide to change</span>';
-			
+		  	
+			html +="<button id=changegrid class=btn>Resize to - > (" + layout.rows + " / " + layout.cols +")</button>";
 		  	app.getObject(sheetId).then(function(obj) {
 			  obj.getLayout().then(function(layout)  {
-				
 				$element.find('#size').html(layout.columns);
 				$element.find('#selector').html(layout.columns);
 			  });
 			});
 		  	
-			$element.html(html).find('button').on('qv-activate', function() {
-			  	
+			$element.html(html).find('#changegrid').on('qv-activate', function(event) {
+			    event.preventDefault();
+	  			resizeGrid(layout.rows, layout.cols);
 			});
 		  
-		  	$element.find('select, input').on('change', function() {
-				var val = $(this).val() + '';
-			  	resizeGrid(val);
-			});
-			
-		  	$element.find('select, input').on('input', function() {
-				var val = $(this).val() + '';
-
-			  	$element.find('#newsize').html(val);
-			});
-			
 		}
 	};
 
