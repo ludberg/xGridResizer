@@ -1,0 +1,10 @@
+{
+	"name": "xGridResizer",
+	"description": "Change the number of columns and rows of a sheet",
+	"type": "visualization",
+	"version": 1,
+	"preview": "preview.png",
+	"author": "Anders Uddenberg",
+	
+	"icon": "extension"
+}
