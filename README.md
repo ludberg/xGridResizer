@@ -2,6 +2,10 @@
 
 This extension lets you resize the grid of a sheet in Qlik Sense. 
 
+## Video Demo
+
+https://exsitec.wistia.com/medias/128mkadycp
+
 ## Usage
 
 1. Drag the extension onto EVERY sheet you want to reisze. 
